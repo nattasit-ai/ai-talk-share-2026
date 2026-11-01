@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI ไม่ใช่แค่ Chatbot — AI Talk &amp; Share 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Icon sprite ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-human" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M10 9l5 3-5 3z"/></symbol>
+    <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3 5h10M8 3v2M5 5c1 4 4 7 7 8M11 5c-1 4-4 7-7 8"/><path d="M13 21l4-9 4 9M14.5 18h5"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3.5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/><path d="M16 7h4v4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M6 9v4a3 3 0 0 0 3 3h6"/><path d="M13 14l2 2-2 2"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M10 21v-3h4v3"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2.5l8.5 4.8v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="M3.5 7.3L12 12l8.5-4.7M12 12v9.5"/></symbol>
+    <symbol id="i-app" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 8.5h18"/><circle cx="6.2" cy="6.3" r=".6"/><circle cx="8.4" cy="6.3" r=".6"/><path d="M7 13h6M7 16h10"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3L2 20h20z"/><path d="M12 10v4M12 17v.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5M12 14.5v2.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13.5h3M13.5 13.5h3M7.5 17h3"/></symbol>
+    <symbol id="i-form" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/><path d="M15 16l1.2 1.2L18.5 15"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16 16"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></symbol>
+    <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="9.5" r="1.8"/><path d="M21 16l-5-5-9 9"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 4.1M12 17.4v.4"/></symbol>
+  </defs>
+</svg>
+
+<div class="bg" aria-hidden="true"><div class="glow g1"></div><div class="glow g2"></div><div class="grid"></div></div>
+<div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="viewport" id="viewport">
+<main class="stage" id="stage" aria-live="polite">
+
+<!-- ================= SLIDE 1 — HOOK ================= -->
+<section class="slide s-hook" data-time="1 นาที" aria-label="สไลด์ 1">
+  <div class="eyebrow r">AI Talk &amp; Share 2026</div>
+  <p class="hook-topic r">AI ไม่ใช่แค่ Chatbot — รู้จัก เลือกเป็น ใช้ให้ถูกงาน</p>
+  <h1 class="hero r">คุณใช้ AI อยู่ทุกวัน…<br><span class="grad">แต่รู้จักมันจริงหรือยัง?</span></h1>
+  <div class="wordmarks">
+    <div class="wm r"><span class="wm-name">ChatGPT</span><span class="wm-co">OpenAI</span></div>
+    <div class="wm r"><span class="wm-name">Gemini</span><span class="wm-co">Google</span></div>
+    <div class="wm r"><span class="wm-name">Claude</span><span class="wm-co">Anthropic</span></div>
+  </div>
+  <p class="hook-q r"><svg class="ic"><use href="#i-q"/></svg>AI ทั้ง 3 ตัว ต่างกันตรงไหน?</p>
+  <aside class="notes">
+    <p><b>[0:00–1:00]</b> สวัสดีครับ/ค่ะ ก่อนเริ่ม ขอถามสั้น ๆ ครับ — <b>ใครเคยใช้ AI แบบแชตมาแล้วบ้าง ยกมือหน่อยครับ</b> (รอ) … เยอะเลยนะครับ</p>
+    <p>แล้ว<b>ใครเคยใช้มากกว่าหนึ่งตัว</b> เช่น ใช้ทั้ง ChatGPT และ Gemini หรือ Claude ยกมืออีกทีครับ (รอ)</p>
+    <p>วันนี้เราจะใช้เวลาประมาณ 15–20 นาที คุยกันว่า AI จริง ๆ มีหลายแบบ ไม่ได้มีแค่ Chatbot และสามตัวที่ขึ้นจออยู่นี้ ต่างกันตรงไหน — เพื่อให้เรา <b>รู้จัก เลือกเป็น และใช้ให้ถูกงาน</b></p>
+    <p class="link">เชื่อมต่อ: “แต่ก่อนจะไปเทียบกัน เรามาตั้งต้นให้ตรงกันก่อนว่า AI คืออะไร”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 2 — WHAT IS AI ================= -->
+<section class="slide" data-time="1.5 นาที" aria-label="สไลด์ 2">
+  <div class="eyebrow r">01 · พื้นฐาน</div>
+  <h2 class="title r">AI คืออะไร?</h2>
+  <p class="key r"><b>AI (Artificial Intelligence)</b> คือเทคโนโลยีที่ทำให้คอมพิวเตอร์ทำงานบางอย่าง<br>ที่ต้องอาศัยความสามารถของมนุษย์ได้</p>
+  <div class="compare r">
+    <div class="cmp-col">
+      <div class="cmp-head"><svg class="ic"><use href="#i-human"/></svg>มนุษย์</div>
+      <ul class="pills"><li>คิด <em>Thinking</em></li><li>เรียนรู้ <em>Learning</em></li><li>วิเคราะห์ <em>Analyzing</em></li></ul>
+    </div>
+    <div class="cmp-mid"><svg class="ic"><use href="#i-arrow"/></svg><span>เลียนแบบบางส่วน</span></div>
+    <div class="cmp-col ai">
+      <div class="cmp-head"><svg class="ic"><use href="#i-chip"/></svg>AI</div>
+      <ul class="pills"><li>จดจำรูปแบบ <em>Recognizing</em></li><li>คาดการณ์ <em>Predicting</em></li><li>สร้างเนื้อหา <em>Generating</em></li></ul>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="ex r"><svg class="ic"><use href="#i-play"/></svg>แนะนำวิดีโอ</div>
+    <div class="ex r"><svg class="ic"><use href="#i-translate"/></svg>แปลภาษา</div>
+    <div class="ex r"><svg class="ic"><use href="#i-scan"/></svg>วิเคราะห์ภาพ</div>
+    <div class="ex r"><svg class="ic"><use href="#i-doc"/></svg>ช่วยเขียนรายงาน</div>
+  </div>
+  <p class="caveat r">AI เรียนรู้จาก “รูปแบบในข้อมูล” — <b>ไม่ได้คิดหรือเข้าใจเหมือนมนุษย์ในทุกด้าน</b></p>
+  <aside class="notes">
+    <p><b>[1:00–2:30]</b> คำว่า AI ฟังดูไกลตัว แต่จริง ๆ เราใช้มันทุกวัน — YouTube แนะนำวิดีโอให้เรา, Google แปลภาษา, ระบบอ่านภาพเอกซเรย์, หรือการช่วยร่างรายงาน</p>
+    <p>นิยามง่าย ๆ: AI คือเทคโนโลยีที่ทำให้คอมพิวเตอร์ทำงานบางอย่างที่ปกติต้องใช้ความสามารถของคน</p>
+    <p>แต่ระวังนิดหนึ่งครับ — คนเราคิด เรียนรู้ และวิเคราะห์จากความเข้าใจ ส่วน AI ทำงานจาก <b>รูปแบบในข้อมูลจำนวนมาก</b> มันจดจำรูปแบบ คาดการณ์ และสร้างเนื้อหาใหม่ได้เก่ง แต่ไม่ได้ “เข้าใจ” เหมือนเราทุกเรื่อง ดังนั้นมันตอบผิดได้อย่างมั่นใจ</p>
+    <p class="link">เชื่อมต่อ: “แล้ว AI มีกี่แบบ? หลายคนคิดว่า AI = แชตบอต ซึ่งไม่ใช่ทั้งหมด”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 3 — TYPES ================= -->
+<section class="slide" data-time="1.5 นาที" aria-label="สไลด์ 3">
+  <div class="eyebrow r">02 · ประเภทของ AI</div>
+  <h2 class="title r">AI ไม่ได้มีแค่ <span class="grad">Chatbot</span></h2>
+  <div class="cards4">
+    <article class="card type r">
+      <div class="card-ic"><svg class="ic"><use href="#i-chart"/></svg></div>
+      <h3>Predictive AI</h3>
+      <p class="th">วิเคราะห์และคาดการณ์</p>
+      <p class="eg">เช่น คาดการณ์จำนวนผู้ป่วยนอกช่วงเทศกาล</p>
+    </article>
+    <article class="card type r">
+      <div class="card-ic"><svg class="ic"><use href="#i-spark"/></svg></div>
+      <h3>Generative AI</h3>
+      <p class="th">สร้างข้อความ ภาพ เสียง และโค้ด</p>
+      <p class="eg">เช่น ร่างหนังสือเวียน หรือโปสเตอร์</p>
+    </article>
+    <article class="card type r">
+      <div class="card-ic"><svg class="ic"><use href="#i-layers"/></svg></div>
+      <h3>Multimodal AI</h3>
+      <p class="th">รับและประมวลผลข้อมูลหลายรูปแบบ</p>
+      <p class="eg">เช่น อ่านเอกสารสแกน + รูป + ข้อความ</p>
+    </article>
+    <article class="card type r">
+      <div class="card-ic"><svg class="ic"><use href="#i-flow"/></svg></div>
+      <h3>Agentic AI</h3>
+      <p class="th">วางแผนและใช้เครื่องมือทำงานหลายขั้นตอน</p>
+      <p class="eg">เช่น ค้นข้อมูล → สรุป → ทำตาราง</p>
+    </article>
+  </div>
+  <p class="note r">* เป็นการแบ่งตามลักษณะการใช้งาน แต่ละประเภทอาจทับซ้อนกันได้</p>
+  <aside class="notes">
+    <p><b>[2:30–4:00]</b> ถ้าแบ่งตามลักษณะการใช้งาน เราจะเห็น AI 4 แบบหลัก ๆ</p>
+    <p><b>Predictive</b> — คาดการณ์จากข้อมูลเดิม เช่น คาดจำนวนผู้ป่วยช่วงสงกรานต์ อันนี้มีมานานแล้ว</p>
+    <p><b>Generative</b> — สร้างของใหม่ ข้อความ ภาพ เสียง โค้ด นี่คือกลุ่มที่ ChatGPT, Gemini, Claude อยู่</p>
+    <p><b>Multimodal</b> — รับได้หลายรูปแบบพร้อมกัน ถ่ายรูปเอกสารแล้วถามได้เลย</p>
+    <p><b>Agentic</b> — ไม่ได้แค่ตอบ แต่วางแผนและลงมือทำหลายขั้น ใช้เครื่องมืออย่างการค้นเว็บหรือสร้างไฟล์</p>
+    <p>ย้ำว่าแบ่งเพื่อให้เข้าใจง่าย ตัวหนึ่งเป็นได้หลายแบบพร้อมกัน</p>
+    <p class="link">เชื่อมต่อ: “ทีนี้ ตอนเราพูดว่า ‘ใช้ ChatGPT’ จริง ๆ เราใช้อะไรอยู่กันแน่?”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 4 — AI / LLM / MODEL ================= -->
+<section class="slide" data-time="1.5 นาที" aria-label="สไลด์ 4">
+  <div class="eyebrow r">03 · แอป กับ โมเดล</div>
+  <h2 class="title r">ChatGPT ไม่ใช่ชื่อโมเดลทั้งหมด</h2>
+  <div class="split">
+    <div class="nest r" aria-label="AI ครอบ Generative AI ครอบ LLM">
+      <svg viewBox="0 0 560 520" class="nest-svg">
+        <circle class="ring ring1" cx="280" cy="260" r="245"/>
+        <circle class="ring ring2" cx="280" cy="305" r="195"/>
+        <circle class="ring ring3" cx="280" cy="350" r="145"/>
+        <text x="280" y="68" class="nt">AI</text>
+        <text x="280" y="165" class="nt">Generative AI</text>
+        <text x="280" y="345" class="nt strong">LLM</text>
+        <text x="280" y="386" class="ns">โมเดลภาษาขนาดใหญ่</text>
+      </svg>
+    </div>
+    <div class="chain">
+      <div class="chain-head r"><span><svg class="ic"><use href="#i-building"/></svg>บริษัท</span><span><svg class="ic"><use href="#i-cube"/></svg>โมเดล AI</span><span><svg class="ic"><use href="#i-app"/></svg>แอปที่เราใช้</span></div>
+      <div class="chain-row r"><b>OpenAI</b><i></i><b>GPT</b><i></i><b class="app">ChatGPT</b></div>
+      <div class="chain-row r"><b>Google</b><i></i><b>Gemini Models</b><i></i><b class="app">Gemini App</b></div>
+      <div class="chain-row r"><b>Anthropic</b><i></i><b>Claude Models</b><i></i><b class="app">Claude App</b></div>
+      <p class="analogy r">เปรียบง่าย ๆ: <b>โมเดล = เครื่องยนต์</b> · <b>แอป = ตัวรถ</b></p>
+    </div>
+  </div>
+  <p class="key-bottom r">แอปที่เราใช้ กับโมเดลที่อยู่เบื้องหลัง <span class="grad">ไม่ใช่สิ่งเดียวกัน</span></p>
+  <aside class="notes">
+    <p><b>[4:00–5:30]</b> ซ้ายมือคือภาพวงซ้อน: AI คือวงใหญ่สุด, Generative AI อยู่ข้างใน, และ <b>LLM — Large Language Model</b> หรือโมเดลภาษาขนาดใหญ่ อยู่ในนั้นอีกที</p>
+    <p>ขวามือสำคัญมาก: บริษัท → สร้างโมเดล → เอาโมเดลมาใส่ในแอป เช่น OpenAI สร้างโมเดลตระกูล GPT แล้วใส่ไว้ในแอปชื่อ ChatGPT</p>
+    <p>ให้นึกถึงรถยนต์ครับ — <b>โมเดลคือเครื่องยนต์</b> ส่วน <b>แอปคือตัวรถ</b> ที่มีพวงมาลัย เบาะ วิทยุ (ฟีเจอร์ต่าง ๆ) รถรุ่นเดียวกันเปลี่ยนเครื่องได้ แอปเดียวกันก็เปลี่ยนโมเดลข้างในได้</p>
+    <p class="link">เชื่อมต่อ: “ทีนี้มาดูทั้งสามค่ายแบบภาพรวมกันครับ”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 5 — THREE PLATFORMS ================= -->
+<section class="slide" data-time="1 นาที" aria-label="สไลด์ 5">
+  <div class="eyebrow r">04 · ภาพรวม</div>
+  <h2 class="title r">3 AI ที่ควรรู้จัก</h2>
+  <div class="cols3">
+    <article class="card plat r">
+      <div class="plat-top"><span class="wm-name">ChatGPT</span><span class="wm-co">โดย OpenAI</span></div>
+      <ul class="dots">
+        <li>ผู้ช่วยอเนกประสงค์ <span class="nw">ใช้งานแพร่หลาย</span></li>
+        <li>มีเครื่องมือในตัว: วิเคราะห์ไฟล์ ค้นเว็บ สร้างภาพ</li>
+      </ul>
+      <p class="usecase"><svg class="ic"><use href="#i-chat"/></svg>ร่างเอกสาร · สรุปประชุม</p>
+    </article>
+    <article class="card plat r">
+      <div class="plat-top"><span class="wm-name">Gemini</span><span class="wm-co">โดย Google</span></div>
+      <ul class="dots">
+        <li>เชื่อมกับ Google Workspace (Gmail, Docs, Drive)</li>
+        <li>รับข้อมูลหลายรูปแบบ ภาพ เสียง วิดีโอ</li>
+      </ul>
+      <p class="usecase"><svg class="ic"><use href="#i-chat"/></svg>สรุปอีเมล · เอกสารใน Drive</p>
+    </article>
+    <article class="card plat r">
+      <div class="plat-top"><span class="wm-name">Claude</span><span class="wm-co">โดย Anthropic</span></div>
+      <ul class="dots">
+        <li>เน้นงานอ่าน-เขียนเอกสารยาว</li>
+        <li>มีเครื่องมือสำหรับงาน<span class="nw">พัฒนาซอฟต์แวร์</span></li>
+      </ul>
+      <p class="usecase"><svg class="ic"><use href="#i-chat"/></svg>สรุปงานวิจัย · เขียนโปรแกรม</p>
+    </article>
+  </div>
+  <p class="note r">ทั้ง 3 ตัวทำงานทั่วไปได้ใกล้เคียงกัน — ความต่างหลักอยู่ที่ <b>ระบบนิเวศ เครื่องมือ และแพ็กเกจ</b> ไม่มีตัวไหนดีที่สุดในทุกงาน</p>
+  <aside class="notes">
+    <p><b>[5:30–6:30]</b> สามค่ายนี้ ทุกตัวช่วยเขียน สรุป แปล วิเคราะห์ได้ใกล้เคียงกันในงานทั่วไป</p>
+    <p>ความแตกต่างจริง ๆ มักอยู่ที่ “ระบบนิเวศ” — ใครใช้ Gmail/Drive อยู่แล้ว Gemini เชื่อมได้สะดวก; ChatGPT มีเครื่องมือในตัวหลากหลาย; Claude มักถูกเลือกใช้กับงานเอกสารยาวและงานเขียนโปรแกรม</p>
+    <p>ย้ำว่าเราไม่ได้เชียร์ค่ายไหน และความสามารถเปลี่ยนเร็วมาก — ทุกค่ายอัปเดตแทบทุกเดือน</p>
+    <p class="link">เชื่อมต่อ: “เจาะทีละค่าย เริ่มจาก ChatGPT ซึ่งหลายคนใช้อยู่แล้ว”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 6 — CHATGPT ================= -->
+<section class="slide" data-time="2 นาที" aria-label="สไลด์ 6">
+  <div class="eyebrow r">05 · OpenAI</div>
+  <h2 class="title r">ChatGPT — ผู้ช่วย AI อเนกประสงค์</h2>
+  <div class="split2">
+    <div class="models">
+      <div class="sub r">ตัวเลือกในแอป ChatGPT <span class="tag">ขึ้นกับแพ็กเกจ</span></div>
+      <div class="model r"><div><b>GPT-6</b><span>ขับเคลื่อนด้วยโมเดล GPT-6 Sol</span></div><em>Plus · Pro · Business · Enterprise</em></div>
+      <div class="model r"><div><b>GPT-6 Pro</b><span>ขับเคลื่อนด้วยโมเดล GPT-6 Astra (รุ่นสูงสุด)</span></div><em>Pro · Business · Enterprise</em></div>
+      <div class="model r"><div><b>GPT-5.6 Luna</b><span>รุ่นก่อนหน้า ยังใช้ในแพ็กเกจฟรี</span></div><em>Free · Go</em></div>
+      <p class="api r"><b>API (นักพัฒนา):</b> gpt-6-astra · gpt-6.1-sol · gpt-6.1-terra · gpt-6-luna</p>
+    </div>
+    <div class="levels r">
+      <div class="sub">ระดับการคิด <em>(Thinking level)</em> ≠ ชื่อโมเดล</div>
+      <div class="lvl-track">
+        <div class="lvl"><span class="lvl-dot"></span><b>Instant</b><small>ตอบทันที</small></div>
+        <div class="lvl"><span class="lvl-dot"></span><b>Medium</b><small>คิดก่อนตอบ</small></div>
+        <div class="lvl"><span class="lvl-dot"></span><b>High</b><small>คิดนานขึ้น</small></div>
+        <div class="lvl"><span class="lvl-dot"></span><b>Extra High</b><small>บางแพ็กเกจ</small></div>
+        <div class="lvl pro"><span class="lvl-dot"></span><b>Pro</b><small>ลึกสุด (Astra)</small></div>
+      </div>
+      <div class="lvl-ex">
+        <div><b>GPT-6</b> + <em>Instant</em><span>ตอบอีเมลสั้น แปลข้อความ</span></div>
+        <div><b>GPT-6</b> + <em>High</em><span>วิเคราะห์รายงานยาว วางแผนโครงการ</span></div>
+      </div>
+      <p class="lvl-hint">โมเดลเดียวกัน ปรับระดับการคิดได้ — ยิ่งคิดนาน มักแม่นขึ้นกับงานซับซ้อน แต่ช้าลง</p>
+    </div>
+  </div>
+  <div class="chips r">
+    <span>สรุปประชุม</span><span>วิเคราะห์ไฟล์</span><span>ช่วยเขียนรายงาน</span><span>ค้นคว้า &amp; จัดโครงสร้างข้อมูล</span><span>ช่วยพัฒนาซอฟต์แวร์</span>
+  </div>
+  <aside class="notes">
+    <p><b>[6:30–8:30]</b> ใน ChatGPT มีสองเรื่องที่คนมักสับสน: <b>ชื่อโมเดล</b> กับ <b>ระดับการคิด</b></p>
+    <p>ชื่อโมเดล ณ ตอนนี้ (ตรวจ 1 พ.ย. 2026): ตัวเลือก “GPT-6” ในแอปใช้โมเดล GPT-6 Sol สำหรับแพ็กเกจเสียเงิน ส่วน “GPT-6 Pro” ใช้ GPT-6 Astra ซึ่งเป็นรุ่นสูงสุด สำหรับ Pro/Business/Enterprise; ผู้ใช้ฟรีและ Go ยังใช้ GPT-5.6 Luna อยู่ (OpenAI ประกาศว่า Sol/Luna ใหม่จะมาแทน GPT-5.6 ทยอยเปลี่ยน)</p>
+    <p>ระดับการคิด: Instant ตอบทันที, Medium/High ให้เวลาคิดมากขึ้น, Pro คือโหมดคิดลึกที่สุด — โมเดลเดียวกันปรับระดับการคิดได้ เหมือนบอกให้ “ตอบเร็ว” หรือ “คิดให้รอบคอบ”</p>
+    <p>ฝั่งนักพัฒนา (API) ชื่อจะต่างจากในแอป เช่น gpt-6.1-sol, gpt-6-luna — ไม่ต้องจำ แค่รู้ว่าแอปกับ API ไม่ได้เหมือนกันเป๊ะ</p>
+    <p><i>หมายเหตุ: รายละเอียดแพ็กเกจเปลี่ยนบ่อย ก่อนบรรยายให้เปิดเมนูเลือกโมเดลในบัญชีจริงตรวจอีกครั้ง</i></p>
+    <p class="link">เชื่อมต่อ: “ต่อไป ค่ายที่อยู่ในมือถือ Android และ Gmail ของเราหลายคน — Gemini”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 7 — GEMINI ================= -->
+<section class="slide" data-time="2 นาที" aria-label="สไลด์ 7">
+  <div class="eyebrow r">06 · Google</div>
+  <h2 class="title r">Gemini — AI ในระบบนิเวศ Google</h2>
+  <div class="cards4">
+    <article class="card gm r">
+      <span class="cap"><svg class="ic"><use href="#i-brain"/></svg>Advanced Reasoning</span>
+      <h3>Gemini 4 Argon</h3>
+      <p>โมเดลเรือธง สำหรับงานคิดวิเคราะห์ซับซ้อน</p>
+    </article>
+    <article class="card gm r">
+      <span class="cap"><svg class="ic"><use href="#i-bolt"/></svg>Fast Processing</span>
+      <h3>Gemini 3.8 Flash</h3>
+      <p>เร็ว เหมาะงาน<span class="nw">หลายขั้นตอน</span>และงานองค์กร</p>
+    </article>
+    <article class="card gm r">
+      <span class="cap"><svg class="ic"><use href="#i-coin"/></svg>Cost Efficiency</span>
+      <h3>Gemini 3.5 Flash-Lite</h3>
+      <p>เร็วและประหยัด สำหรับงานปริมาณมาก</p>
+    </article>
+    <article class="card gm r">
+      <span class="cap"><svg class="ic"><use href="#i-image"/></svg>Image Generation</span>
+      <h3>Nano Banana 2.1</h3>
+      <p>สร้างและแก้ไขภาพ<br><span class="nw">ตัวอักษรในภาพ</span>แม่นขึ้น</p>
+    </article>
+  </div>
+  <div class="chips r">
+    <span>งานร่วมกับ Google Workspace</span><span>วิเคราะห์เอกสาร &amp; ข้อมูลหลายรูปแบบ</span><span>สร้างภาพ</span><span>ประมวลผลจำนวนมาก</span>
+  </div>
+  <p class="note r">รายชื่อจากหน้า Gemini API (ตรวจ 1 พ.ย. 2026) — ชื่อที่แสดงในแอป Gemini อาจต่างจากชื่อใน API</p>
+  <aside class="notes">
+    <p><b>[8:30–10:30]</b> Gemini ของ Google จุดแข็งคือเชื่อมกับของที่เราใช้อยู่ — Gmail, Docs, Drive, Sheets (ขึ้นกับแพ็กเกจ Workspace ขององค์กร)</p>
+    <p>รุ่นหลักตามหน้าเอกสารของ Google ตอนนี้: <b>Gemini 4 Argon</b> เป็นรุ่นเรือธงสำหรับงานคิดซับซ้อน, <b>Gemini 3.8 Flash</b> เน้นความเร็วและงานหลายขั้นตอน, <b>Gemini 3.5 Flash-Lite</b> ประหยัดและเร็วที่สุด เหมาะงานปริมาณมาก, และ <b>Nano Banana 2.1</b> คือโมเดลสร้างภาพ</p>
+    <p>ข้อสังเกต: Nano Banana เป็นชื่อเล่นของโมเดลสร้างภาพในตระกูล Gemini ไม่ใช่แอปแยก</p>
+    <p class="link">เชื่อมต่อ: “ค่ายสุดท้าย Claude ซึ่งมีวิธีตั้งชื่อรุ่นต่างออกไป”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 8 — CLAUDE ================= -->
+<section class="slide" data-time="2 นาที" aria-label="สไลด์ 8">
+  <div class="eyebrow r">07 · Anthropic</div>
+  <h2 class="title r">Claude — AI สำหรับงานเอกสารและการพัฒนา</h2>
+  <div class="split2">
+    <div class="tiers">
+      <div class="tier r t1"><div class="tier-bar"></div><div><b>Opus 5.5</b><span>งานซับซ้อน คิดลึก งานยาว</span></div></div>
+      <div class="tier r t2"><div class="tier-bar"></div><div><b>Sonnet 5.5</b><span>สมดุลความสามารถและความเร็ว</span></div></div>
+      <div class="tier r t3"><div class="tier-bar"></div><div><b>Haiku 5.5</b><span>รวดเร็วและประหยัด</span></div></div>
+      <p class="api r">อีกระดับที่สูงกว่า: <b>Claude Fable 5.1</b> · ชื่อโมเดล = ตระกูล + เวอร์ชัน</p>
+    </div>
+    <div class="callout r">
+      <div class="callout-ic"><svg class="ic"><use href="#i-terminal"/></svg></div>
+      <h3>Claude Code <span class="tag">เครื่องมือ ไม่ใช่โมเดล</span></h3>
+      <p>เครื่องมือช่วยงานพัฒนาซอฟต์แวร์ — อ่าน เขียน และแก้โค้ดในโปรเจกต์ โดยมี<b>โมเดล Claude</b> <span class="nw">ทำงานอยู่เบื้องหลัง</span></p>
+      <div class="mini-chain"><span>Claude Code</span><svg class="ic"><use href="#i-arrow"/></svg><span>ใช้โมเดล Opus / Sonnet / Haiku</span></div>
+    </div>
+  </div>
+  <div class="chips r">
+    <span>สรุปเอกสาร/งานวิจัยยาว</span><span>ร่างรายงาน</span><span>วิเคราะห์ไฟล์</span><span>เขียนโปรแกรม</span>
+  </div>
+  <aside class="notes">
+    <p><b>[10:30–12:30]</b> Claude ตั้งชื่อเป็นสามระดับเหมือนไซซ์: <b>Opus</b> ใหญ่สุด เหมาะงานซับซ้อน, <b>Sonnet</b> กลาง สมดุลระหว่างความเก่งกับความเร็ว, <b>Haiku</b> เล็ก เร็ว ประหยัด</p>
+    <p>เวอร์ชันล่าสุด ณ วันที่ตรวจ (1 พ.ย. 2026) คือรุ่น 5.5 ทั้งสามระดับ และยังมี Claude Fable 5.1 ซึ่งเป็นระดับที่สูงกว่า Opus อีกขั้น</p>
+    <p>สิ่งที่คนสับสนบ่อย: <b>Claude Code ไม่ใช่ชื่อโมเดล</b> — มันคือเครื่องมือสำหรับโปรแกรมเมอร์ ที่ข้างในเรียกใช้โมเดล Claude อีกที เหมือนที่ ChatGPT เป็นแอปที่เรียกใช้โมเดล GPT</p>
+    <p class="link">เชื่อมต่อ: “รู้จักครบสามค่ายแล้ว คำถามที่ทุกคนอยากรู้คือ งานแบบนี้ควรเริ่มที่ตัวไหน”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 9 — MATRIX ================= -->
+<section class="slide" data-time="1.5 นาที" aria-label="สไลด์ 9">
+  <div class="eyebrow r">08 · เลือกให้ถูกงาน</div>
+  <h2 class="title r">งานแบบนี้ เลือก AI ตัวไหนดี?</h2>
+  <div class="matrix-wrap r">
+    <table class="matrix" id="matrix">
+      <thead><tr><th>งาน</th><th>ChatGPT</th><th>Gemini</th><th>Claude</th></tr></thead>
+      <tbody>
+        <tr data-info="ทั้ง 3 ตัวร่างรายงานภาษาไทยได้ดี — เลือกตัวที่องค์กรอนุญาตและเราถนัด แล้วตรวจข้อเท็จจริงเอง"><td>เขียนรายงาน</td><td><i class="m s"></i></td><td><i class="m s"></i></td><td><i class="m s"></i></td></tr>
+        <tr data-info="อัปโหลด PDF ได้ทั้ง 3 ตัว — ต้องเทียบกับต้นฉบับเสมอ และระวังการอ้างอิงที่ไม่มีจริง"><td>สรุปบทความวิชาการ</td><td><i class="m s"></i></td><td><i class="m s"></i></td><td><i class="m s"></i></td></tr>
+        <tr data-info="ทุกตัวอ่านไฟล์ Excel และสรุปข้อมูลได้ — ตัวเลขที่ได้ต้องตรวจซ้ำก่อนใช้จริงทุกครั้ง"><td>วิเคราะห์ Excel</td><td><i class="m c"></i></td><td><i class="m c"></i></td><td><i class="m c"></i></td></tr>
+        <tr data-info="Gemini เชื่อมกับ Gmail/Docs/Drive โดยตรง ส่วนตัวอื่นต้องใช้ตัวเชื่อม (Connector) ที่ขึ้นกับแพ็กเกจ"><td>ทำงานร่วมกับ Google Workspace</td><td><i class="m d"></i></td><td><i class="m s"></i></td><td><i class="m d"></i></td></tr>
+        <tr data-info="ทั้ง 3 ค่ายมีเครื่องมือสำหรับนักพัฒนา (เช่น Codex, Claude Code) — ควรใช้ภายใต้นโยบาย IT ขององค์กร"><td>เขียนโปรแกรม</td><td><i class="m s"></i></td><td><i class="m s"></i></td><td><i class="m s"></i></td></tr>
+        <tr data-info="ChatGPT และ Gemini มีโมเดลสร้างภาพในตัว ส่วน Claude ออกแบบผ่านโค้ด/เครื่องมือออกแบบ ไม่ได้สร้างภาพถ่ายโดยตรง"><td>สร้างภาพประชาสัมพันธ์</td><td><i class="m s"></i></td><td><i class="m s"></i></td><td><i class="m d"></i></td></tr>
+        <tr data-info="ฟีเจอร์ Agent ทำงานหลายขั้นตอนมีในทุกค่าย แต่ความสามารถและสิทธิ์ใช้งานขึ้นกับแพ็กเกจ"><td>จัดการงานหลายขั้นตอน</td><td><i class="m d"></i></td><td><i class="m d"></i></td><td><i class="m d"></i></td></tr>
+      </tbody>
+    </table>
+    <div class="matrix-side">
+      <ul class="legend">
+        <li><i class="m s"></i>เหมาะเป็นตัวเลือกเริ่มต้น</li>
+        <li><i class="m c"></i>ทำได้</li>
+        <li><i class="m d"></i>ขึ้นกับเครื่องมือหรือแพ็กเกจ</li>
+      </ul>
+      <div class="info" id="matrixInfo"><b>แตะที่แถว</b> เพื่อดูเหตุผล</div>
+    </div>
+  </div>
+  <p class="note r">ไม่ใช่คะแนนความเก่ง — เป็นแนวทางเริ่มต้นจากฟีเจอร์ที่แต่ละแพลตฟอร์มมี (ณ พ.ย. 2026)</p>
+  <aside class="notes">
+    <p><b>[12:30–14:00]</b> ตารางนี้ไม่ใช่คะแนนนะครับ เพราะเราไม่ได้ทดสอบเทียบเอง และผลทดสอบก็เปลี่ยนทุกเดือน ใช้เป็น “จุดเริ่มต้น” เท่านั้น</p>
+    <p>(คลิกแถว Google Workspace) ถ้างานอยู่ใน Gmail/Drive — Gemini สะดวกสุดเพราะอยู่ในระบบเดียวกัน</p>
+    <p>(คลิกแถวสร้างภาพ) ChatGPT กับ Gemini มีโมเดลสร้างภาพในตัว ส่วน Claude ใช้วิธีออกแบบผ่านโค้ดแทน</p>
+    <p>งานเขียนทั่วไป — ใช้ตัวไหนก็ได้ที่องค์กรอนุญาต สำคัญกว่าคือ “การสั่งงานให้ชัด” และ “ตรวจผลลัพธ์”</p>
+    <p class="link">เชื่อมต่อ: “ทีนี้มาดูว่าในงานโรงพยาบาลของเรา มันช่วยอะไรได้จริง”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 10 — USE CASES ================= -->
+<section class="slide" data-time="1.5 นาที" aria-label="สไลด์ 10">
+  <div class="eyebrow r">09 · งานจริงในโรงพยาบาล</div>
+  <h2 class="title r">AI ช่วยงานเราได้อย่างไร?</h2>
+  <div class="cases">
+    <article class="case r">
+      <h3><svg class="ic"><use href="#i-doc"/></svg>สรุปบทความวิชาการ</h3>
+      <div class="ba"><div class="b"><small>ก่อน</small>อ่านบทความภาษาอังกฤษ 20 หน้า<br>ใช้เวลาครึ่งวัน</div><svg class="ic ba-arrow"><use href="#i-arrow"/></svg><div class="a"><small>หลัง</small>ได้สรุปประเด็น + ตารางผลลัพธ์<br>แล้วตรวจกับต้นฉบับ</div></div>
+    </article>
+    <article class="case r">
+      <h3><svg class="ic"><use href="#i-calendar"/></svg>จัดทำตารางงานและเอกสาร</h3>
+      <div class="ba"><div class="b"><small>ก่อน</small>จัดตารางเวรด้วยมือ<br>หลายไฟล์ แก้ซ้ำหลายรอบ</div><svg class="ic ba-arrow"><use href="#i-arrow"/></svg><div class="a"><small>หลัง</small>AI ร่างตารางตามเงื่อนไข<br>หัวหน้าตรวจและปรับแก้</div></div>
+    </article>
+    <article class="case r">
+      <h3><svg class="ic"><use href="#i-form"/></svg>สร้างต้นแบบระบบบันทึกข้อมูล</h3>
+      <div class="ba"><div class="b"><small>ก่อน</small>บันทึกบนกระดาษ/Excel<br>กระจัดกระจาย</div><svg class="ic ba-arrow"><use href="#i-arrow"/></svg><div class="a"><small>หลัง</small>ได้ฟอร์มต้นแบบให้ทีมทดลอง<br>ก่อนส่งต่อทีม IT</div></div>
+    </article>
+  </div>
+  <div class="banner r"><span>AI ช่วยร่าง</span><svg class="ic"><use href="#i-arrow"/></svg><span>มนุษย์ตรวจ</span><svg class="ic"><use href="#i-arrow"/></svg><span>มนุษย์ตัดสินใจ</span></div>
+  <p class="note r">* ตัวอย่างสมมติเพื่อประกอบการอธิบาย ไม่ใช้ข้อมูลผู้ป่วยจริง</p>
+  <aside class="notes">
+    <p><b>[14:00–15:30]</b> สามตัวอย่างนี้เป็นสถานการณ์สมมติ แต่ใกล้กับงานเราจริง</p>
+    <p>หนึ่ง — สรุปบทความวิชาการ: แทนที่จะอ่าน 20 หน้าตั้งแต่ต้น ให้ AI สรุปประเด็นหลักเป็นตารางก่อน แล้วเราค่อยอ่านเจาะส่วนสำคัญและตรวจกับต้นฉบับ</p>
+    <p>สอง — ตารางเวร/เอกสาร: บอกเงื่อนไข เช่น จำนวนคน วันหยุด ให้ AI ร่าง แล้วหัวหน้าปรับ</p>
+    <p>สาม — ต้นแบบระบบบันทึกข้อมูล: AI ช่วยสร้างฟอร์มต้นแบบให้ทีมลองใช้ ก่อนคุยกับทีม IT จริง</p>
+    <p>หัวใจคือ <b>AI ช่วยร่าง ลดงานซ้ำ แต่คนต้องตรวจและตัดสินใจเสมอ</b></p>
+    <p class="link">เชื่อมต่อ: “ลองใช้จริงกันเลยดีกว่าครับ”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 11 — DEMO + SAFETY ================= -->
+<section class="slide" data-time="2 นาที" aria-label="สไลด์ 11">
+  <div class="eyebrow r">10 · Live Demo</div>
+  <h2 class="title r">ลองใช้ AI กับงานจริง</h2>
+  <div class="prompt r">
+    <div class="prompt-head"><span><svg class="ic"><use href="#i-chat"/></svg>Prompt ตัวอย่าง</span>
+      <button class="btn-copy" id="copyBtn" type="button"><svg class="ic"><use href="#i-copy"/></svg><span>Copy Prompt</span></button></div>
+    <p class="prompt-text" id="promptText">ช่วยออกแบบโครงร่างโครงการพัฒนาคุณภาพบริการคลินิกการแพทย์แผนไทย โดยมีวัตถุประสงค์ 3 ข้อ <span class="nw">ตัวชี้วัด 3 ข้อ</span> และแผนดำเนินงาน 3 เดือน นำเสนอในรูปแบบตาราง</p>
+  </div>
+  <div class="anatomy r"><span class="an-l">Prompt ที่ดี =</span><span>เป้าหมายชัด</span><b>+</b><span>ระบุจำนวน</span><b>+</b><span>กำหนดรูปแบบผลลัพธ์</span></div>
+  <div class="cols3 safety">
+    <article class="card warn r"><svg class="ic"><use href="#i-alert"/></svg><p>AI อาจตอบผิด หรือสร้าง<b>แหล่งอ้างอิงที่ไม่มีจริง</b></p></article>
+    <article class="card warn r"><svg class="ic"><use href="#i-lock"/></svg><p>อย่าใส่<b>ข้อมูลผู้ป่วยที่ระบุตัวตนได้</b> ในระบบที่ไม่ได้รับอนุญาต</p></article>
+    <article class="card warn r"><svg class="ic"><use href="#i-shield"/></svg><p>ข้อมูลทางการแพทย์ต้อง<b>ผ่านการตรวจสอบ</b>โดยผู้เชี่ยวชาญ</p></article>
+  </div>
+  <aside class="notes">
+    <p><b>[15:30–17:30]</b> กด Copy Prompt แล้ววางในแอป AI ที่เปิดไว้ (ถ้ามีเวลา ลองวางใน 2–3 ตัวแล้วเทียบผลให้ผู้ฟังดู)</p>
+    <p>ชี้ให้เห็นว่า prompt ที่ดีบอก <b>เป้าหมาย</b> (โครงการพัฒนาคุณภาพ), <b>จำนวนที่ต้องการ</b> (3-3-3), และ <b>รูปแบบผลลัพธ์</b> (ตาราง)</p>
+    <p>ระหว่างรอ AI ตอบ ชวนดูข้อควรระวังสามข้อ: หนึ่ง AI ตอบผิดได้และอาจแต่งแหล่งอ้างอิงขึ้นมา ต้องเช็กทุกครั้ง; สอง ห้ามใส่ชื่อ HN เลขบัตร หรือข้อมูลที่ระบุตัวผู้ป่วยได้ ในระบบที่โรงพยาบาลไม่ได้อนุญาต; สาม เนื้อหาทางการแพทย์ต้องให้ผู้เชี่ยวชาญตรวจก่อนใช้</p>
+    <p><i>สำรอง: หากอินเทอร์เน็ตมีปัญหา ให้เล่าผลลัพธ์ที่เตรียมไว้ล่วงหน้าแทน</i></p>
+    <p class="link">เชื่อมต่อ: “ก่อนจากกัน ขอสรุปสิ่งที่อยากให้จำไปข้อเดียว…”</p>
+  </aside>
+</section>
+
+<!-- ================= SLIDE 12 — TAKEAWAY ================= -->
+<section class="slide s-final" data-time="1 นาที" aria-label="สไลด์ 12">
+  <div class="eyebrow r">สรุป</div>
+  <h2 class="title r">AI ไม่ได้มีตัวที่ดีที่สุดสำหรับทุกงาน</h2>
+  <div class="steps">
+    <div class="step r"><span>1</span>เลือก AI ให้เหมาะกับงาน</div>
+    <div class="step r"><span>2</span>ตรวจสอบผลลัพธ์</div>
+    <div class="step r"><span>3</span>ใช้มนุษย์เป็นผู้ตัดสินใจ</div>
+  </div>
+  <p class="closing r">AI คือเครื่องมือที่ช่วยเพิ่มศักยภาพการทำงาน<br><span class="grad">ไม่ใช่สิ่งที่มาแทนความรับผิดชอบของเรา</span></p>
+  <div class="qa r"><svg class="ic"><use href="#i-q"/></svg>Q&amp;A · ถาม-ตอบ</div>
+  <button class="ref-link r" type="button" data-open="refs">แหล่งอ้างอิง &amp; วันที่ตรวจสอบ (กด R)</button>
+  <aside class="notes">
+    <p><b>[17:30–18:30]</b> ถ้าจำได้ข้อเดียว: <b>ไม่มี AI ตัวไหนดีที่สุดสำหรับทุกงาน</b></p>
+    <p>สามขั้นง่าย ๆ — เลือกให้เหมาะกับงาน, ตรวจสอบผลลัพธ์ทุกครั้ง, และให้คนเป็นผู้ตัดสินใจ</p>
+    <p>AI เป็นเครื่องมือที่ทำให้เราทำงานได้มากขึ้น แต่ความรับผิดชอบต่อผู้ป่วยและงานของเรายังเป็นของเราเสมอ ขอบคุณครับ — มีคำถามไหมครับ?</p>
+    <p><i>เตรียมคำถามที่พบบ่อย: ใช้ฟรีได้ไหม / ข้อมูลที่พิมพ์ไปถูกเก็บไหม (ตอบ: ขึ้นกับแพ็กเกจและการตั้งค่า ควรใช้บัญชีที่องค์กรอนุมัติ)</i></p>
+  </aside>
+</section>
+
+</main>
+</div>
+
+<!-- ===== Notes panel ===== -->
+<aside class="notes-panel" id="notesPanel" aria-label="Speaker notes" hidden>
+  <div class="np-head"><b id="npTitle">Speaker Notes</b><span id="npTime"></span><span class="np-hint">กด N เพื่อซ่อน</span></div>
+  <div class="np-body" id="npBody"></div>
+</aside>
+
+<!-- ===== Controls ===== -->
+<nav class="controls" id="controls" aria-label="ควบคุมการนำเสนอ">
+  <button type="button" id="btnRestart" title="เริ่มใหม่ (Home)" aria-label="เริ่มใหม่"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v5h5"/></svg></button>
+  <button type="button" id="btnPrev" title="ก่อนหน้า (←)" aria-label="สไลด์ก่อนหน้า"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <span class="counter" id="counter">01 / 12</span>
+  <button type="button" id="btnNext" title="ถัดไป (→ / Space)" aria-label="สไลด์ถัดไป"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <span class="sep"></span>
+  <button type="button" id="btnNotes" title="Speaker Notes (N)" aria-label="แสดงโน้ตผู้บรรยาย"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></button>
+  <button type="button" id="btnRefs" title="แหล่งอ้างอิง (R)" aria-label="แหล่งอ้างอิง"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+  <button type="button" id="btnHelp" title="คีย์ลัด (?)" aria-label="คีย์ลัด"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 4.1M12 17.4v.4"/></svg></button>
+  <button type="button" id="btnFull" title="เต็มจอ (F)" aria-label="เต็มจอ"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</nav>
+
+<!-- ===== Help overlay ===== -->
+<div class="overlay" id="helpOverlay" role="dialog" aria-modal="true" aria-label="คีย์ลัด" hidden>
+  <div class="ov-card">
+    <h3>คีย์ลัด</h3>
+    <dl class="keys">
+      <dt><kbd>→</kbd> <kbd>Space</kbd> <kbd>PgDn</kbd></dt><dd>สไลด์ถัดไป</dd>
+      <dt><kbd>←</kbd> <kbd>PgUp</kbd></dt><dd>สไลด์ก่อนหน้า</dd>
+      <dt><kbd>Home</kbd> <kbd>End</kbd></dt><dd>ไปสไลด์แรก / สุดท้าย</dd>
+      <dt><kbd>1</kbd>–<kbd>9</kbd></dt><dd>ไปสไลด์ที่ระบุ</dd>
+      <dt><kbd>N</kbd></dt><dd>แสดง/ซ่อน Speaker Notes</dd>
+      <dt><kbd>F</kbd></dt><dd>เต็มจอ (หรือกด F11)</dd>
+      <dt><kbd>R</kbd></dt><dd>แหล่งอ้างอิง</dd>
+      <dt><kbd>?</kbd></dt><dd>แสดง/ซ่อนหน้านี้</dd>
+      <dt><kbd>Esc</kbd></dt><dd>ปิดหน้าต่าง</dd>
+      <dt>ปัดซ้าย/ขวา</dt><dd>เปลี่ยนสไลด์บนแท็บเล็ต</dd>
+    </dl>
+    <button type="button" class="ov-close" data-close>ปิด</button>
+  </div>
+</div>
+
+<!-- ===== References overlay ===== -->
+<div class="overlay" id="refsOverlay" role="dialog" aria-modal="true" aria-label="แหล่งอ้างอิง" hidden>
+  <div class="ov-card wide">
+    <h3>แหล่งอ้างอิง · ตรวจสอบเมื่อ 1 พฤศจิกายน 2026</h3>
+    <ol class="refs">
+      <li><b>OpenAI — GPT-6 and other models in ChatGPT</b> (แหล่งหลักที่กำหนด)<br>
+        <a href="https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt" target="_blank" rel="noopener">help.openai.com/en/articles/20001354</a>
+        <span class="warn-t">ระบบตรวจสอบเปิดหน้านี้โดยตรงไม่ได้ — ข้อมูลในแอปยืนยันผ่านแหล่งด้านล่าง ควรเปิดตรวจซ้ำก่อนบรรยาย</span></li>
+      <li><b>OpenAI API — Using GPT-6</b> (ชื่อโมเดลฝั่ง API)<br>
+        <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener">developers.openai.com/api/docs/guides/latest-model</a></li>
+      <li>SSD Nodes — GPT-6 Astra vs Sol vs Luna in ChatGPT (27 ต.ค. 2026, อ้างหน้าช่วยเหลือของ OpenAI)<br>
+        <a href="https://www.ssdnodes.com/learn/gpt-6-astra-vs-sol-vs-luna-in-chatgpt" target="_blank" rel="noopener">ssdnodes.com/learn/gpt-6-astra-vs-sol-vs-luna-in-chatgpt</a></li>
+      <li>9to5Mac — OpenAI upgrading ChatGPT and Codex with two more GPT-6 models (22 ก.ย. 2026)<br>
+        <a href="https://9to5mac.com/2026/09/22/openai-upgrading-chatgpt-and-codex-with-two-more-gpt-6-models/" target="_blank" rel="noopener">9to5mac.com/2026/09/22/…</a></li>
+      <li><b>Google — Gemini API Models</b><br>
+        <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a> · ตรวจผ่านสำเนาเดียวกันที่ <a href="https://aistudio.google.com/docs/models" target="_blank" rel="noopener">aistudio.google.com/docs/models</a></li>
+      <li><b>Anthropic — Models overview</b><br>
+        <a href="https://docs.anthropic.com/en/docs/about-claude/models/overview" target="_blank" rel="noopener">docs.anthropic.com/en/docs/about-claude/models/overview</a> · ตรวจผ่าน <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview" target="_blank" rel="noopener">platform.claude.com/docs/en/models/opus-5-5/overview</a></li>
+    </ol>
+    <p class="refs-note">ไม่มีการแสดงผล Benchmark ในงานนำเสนอนี้ · ตาราง “เลือก AI” เป็นแนวทางจากฟีเจอร์ ไม่ใช่ผลทดสอบ · ชื่อโมเดลและสิทธิ์ตามแพ็กเกจเปลี่ยนได้บ่อย</p>
+    <button type="button" class="ov-close" data-close>ปิด</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
