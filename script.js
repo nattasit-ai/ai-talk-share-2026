@@ -156,6 +156,70 @@
     tr.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); pick(); } });
   });
 
+  /* ---------- Tabs (model families, Beyond Chatbots) ---------- */
+  document.querySelectorAll('[data-tabs]').forEach(group => {
+    const btns = Array.from(group.querySelectorAll('[data-tab]'));
+    const panels = Array.from(group.querySelectorAll('[data-panel]'));
+    panels.forEach(p => p.querySelectorAll('.fn').forEach((n, i) => n.style.setProperty('--i', i)));
+    function show(idx) {
+      btns.forEach(b => {
+        const on = b.dataset.tab === String(idx);
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-selected', String(on));
+      });
+      panels.forEach(p => {
+        const on = p.dataset.panel === String(idx);
+        p.hidden = !on;
+        p.classList.remove('on');
+        if (on) { void p.offsetWidth; p.classList.add('on'); } // restart reveal animation
+      });
+    }
+    btns.forEach(b => b.addEventListener('click', e => { e.stopPropagation(); show(b.dataset.tab); }));
+  });
+
+  /* ---------- Token simulator ---------- */
+  const sim = document.getElementById('tokenSim');
+  if (sim) {
+    const $ = id => document.getElementById(id);
+    const fmt = n => Math.round(n).toLocaleString('en-US');
+    const money = n => n.toLocaleString('en-US', { maximumFractionDigits: n < 1 ? 4 : 2 });
+    let shown = 0, raf;
+    function animateTotal(target) {
+      cancelAnimationFrame(raf);
+      const from = shown, t0 = performance.now(), dur = 350;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur);
+        shown = from + (target - from) * (1 - Math.pow(1 - k, 3));
+        $('tTotal').textContent = fmt(shown);
+        if (k < 1) raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
+    }
+    function calc() {
+      const jobs = +$('tJobs').value, tin = +$('tIn').value, tout = +$('tOut').value;
+      const inTot = jobs * tin, outTot = jobs * tout, total = inTot + outTot;
+      $('vJobs').textContent = fmt(jobs); $('vIn').textContent = fmt(tin); $('vOut').textContent = fmt(tout);
+      $('tInTot').textContent = fmt(inTot); $('tOutTot').textContent = fmt(outTot);
+      $('barIn').style.width = (inTot / total * 100) + '%';
+      $('barOut').style.width = (outTot / total * 100) + '%';
+      animateTotal(total);
+      const pIn = parseFloat($('pIn').value), pOut = parseFloat($('pOut').value);
+      const cost = $('tCost');
+      if (!isNaN(pIn) || !isNaN(pOut)) {
+        const c = (inTot / 1e6) * (isNaN(pIn) ? 0 : pIn) + (outTot / 1e6) * (isNaN(pOut) ? 0 : pOut);
+        cost.innerHTML = 'ประมาณ <b></b> (หน่วยเงินเดียวกับราคาที่กรอก)' + ((isNaN(pIn) || isNaN(pOut)) ? ' — ยังกรอกราคาไม่ครบ' : '');
+        cost.querySelector('b').textContent = money(c);
+      } else {
+        cost.textContent = 'กรอกราคาของโมเดลที่ใช้จริง เพื่อคำนวณค่าใช้จ่าย';
+      }
+    }
+    sim.querySelectorAll('input').forEach(i => {
+      i.addEventListener('input', calc);
+      i.addEventListener('click', e => e.stopPropagation());
+    });
+    calc();
+  }
+
   /* ---------- Buttons ---------- */
   document.getElementById('btnNext').addEventListener('click', next);
   document.getElementById('btnPrev').addEventListener('click', prev);
@@ -173,6 +237,7 @@
     if (k === '?' || (k === '/' && e.shiftKey)) { e.preventDefault(); helpOv.hidden ? openOv(helpOv) : closeOv(); return; }
     if (anyOpen()) return;
     const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return; // let sliders/fields use arrow keys
     const onButton = tag === 'button' || e.target.closest && e.target.closest('tr[tabindex]');
     switch (k) {
       case 'ArrowRight': case 'PageDown': e.preventDefault(); next(); break;
@@ -192,12 +257,13 @@
   /* ---------- Touch swipe ---------- */
   let sx = 0, sy = 0, st = 0;
   viewport.addEventListener('touchstart', e => {
+    if (e.target.closest('input')) { st = 0; return; }
     const t = e.changedTouches[0]; sx = t.clientX; sy = t.clientY; st = Date.now();
   }, { passive: true });
   viewport.addEventListener('touchend', e => {
     const t = e.changedTouches[0];
     const dx = t.clientX - sx, dy = t.clientY - sy;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4 && Date.now() - st < 800) {
+    if (st && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4 && Date.now() - st < 800) {
       dx < 0 ? next() : prev();
     }
   }, { passive: true });
@@ -210,6 +276,11 @@
     idleTimer = setTimeout(() => document.body.classList.add('idle'), 2800);
   }
   ['mousemove', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, wake, { passive: true }));
+
+  window.addEventListener('hashchange', () => {
+    const h = parseInt(location.hash.slice(1), 10);
+    if (h >= 1 && h <= total && h - 1 !== current) go(h - 1);
+  });
 
   /* ---------- Init ---------- */
   const startHash = parseInt((location.hash || '').slice(1), 10);
