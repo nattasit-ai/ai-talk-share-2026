@@ -130,17 +130,37 @@
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
   /* ---------- Scaling (safe-area aware) ---------- */
+  // Size comes from the visible window (visualViewport on iPad Safari, which tracks the
+  // browser bars), minus safe-area insets and the notes panel. We do NOT measure the
+  // .viewport box: its bottom edge is animated and env()-dependent, so it can be stale.
+  function px(v) { return parseFloat(v) || 0; }
   function fit() {
-    var nh = notesOn ? Math.round(window.innerHeight * NOTES_RATIO) : 0;
+    var vv = window.visualViewport;
+    var winW = vv ? vv.width * (vv.scale || 1) : window.innerWidth;
+    var winH = vv ? vv.height * (vv.scale || 1) : window.innerHeight;
+    winW = Math.min(winW, document.documentElement.clientWidth || winW);
+    winH = Math.min(winH, document.documentElement.clientHeight || winH);
+    var nh = notesOn ? Math.round(winH * NOTES_RATIO) : 0;
     document.documentElement.style.setProperty('--notes-h', nh + 'px');
-    // read the viewport box after the variable applies
-    var vw = viewport.clientWidth, vh = viewport.clientHeight - (notesOn ? 0 : 0);
-    if (!vw || !vh) { vw = window.innerWidth; vh = window.innerHeight - nh; }
+    var cs = getComputedStyle(viewport);
+    var sab = px(getComputedStyle(notesPanel).paddingBottom);           // = env(safe-area-inset-bottom)
+    var vw = winW - px(cs.left) - px(cs.right);
+    var vh = winH - px(cs.top) - nh - sab;
+    if (!(vw > 0 && vh > 0)) { vw = window.innerWidth; vh = window.innerHeight - nh; }
     var sc = Math.min(vw / W, vh / H);
-    stage.style.transform = 'scale(' + sc + ') translate(-50%, -50%)';
+    // explicit pixel offsets + scale from the top-left corner (no percentage translate)
+    stage.style.left = Math.round((vw - W * sc) / 2) + 'px';
+    stage.style.top = Math.round((vh - H * sc) / 2) + 'px';
+    stage.style.transform = 'scale(' + sc + ')';
   }
-  window.addEventListener('resize', function () { requestAnimationFrame(fit); });
-  window.addEventListener('orientationchange', function () { setTimeout(fit, 250); });
+  var fitQueued = false;
+  function queueFit() { if (fitQueued) return; fitQueued = true; requestAnimationFrame(function () { fitQueued = false; fit(); }); }
+  window.addEventListener('resize', queueFit);
+  window.addEventListener('orientationchange', function () { queueFit(); setTimeout(fit, 300); setTimeout(fit, 800); });
+  window.addEventListener('pageshow', fit);
+  window.addEventListener('load', fit);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', queueFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
   /* ---------- Navigation ---------- */
   function go(i, toEnd) {
@@ -154,7 +174,8 @@
     step = toEnd ? model[i].max : 0;
     var s = slides[i];
     s.classList.remove('active'); void s.offsetWidth; s.classList.add('active');
-    if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+    // Safari can throw SecurityError for replaceState on file:// pages; never let that stop the reveal.
+    try { if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1)); } catch (err) {}
     apply(true);
   }
   function setStep(k) {

@@ -31,7 +31,8 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overscroll-behavior: none; }
+html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+html { position: fixed; inset: 0; }
 body {
   background: var(--bg); color: var(--white); font-family: var(--font);
   overflow: hidden; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
@@ -59,8 +60,8 @@ b { font-weight: 700; }
 .progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--cyan)); transition: width var(--t-reveal) var(--ease); box-shadow: 0 0 10px var(--cyan); }
 
 /* ---------- Stage & scaling ---------- */
-.viewport { position: fixed; z-index: 1; top: var(--sat); left: var(--sal); right: var(--sar); bottom: calc(var(--notes-h) + var(--sab)); transition: bottom .4s var(--ease); }
-.stage { position: absolute; width: 1920px; height: 1080px; left: 50%; top: 50%; transform-origin: 0 0; }
+.viewport { position: fixed; z-index: 1; top: var(--sat); left: var(--sal); right: var(--sar); bottom: calc(var(--notes-h) + var(--sab)); overflow: hidden; contain: layout paint; transition: bottom .4s var(--ease); }
+.stage { position: absolute; width: 1920px; height: 1080px; left: 0; top: 0; transform-origin: 0 0; transform: scale(.25); }
 
 /* ---------- Slides & transitions ---------- */
 .slide {
