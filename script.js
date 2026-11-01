@@ -20,6 +20,7 @@
   var viewport = document.getElementById('viewport');
   var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
   var total = slides.length;
+  var mainCount = slides.filter(function (s) { return !s.hasAttribute('data-appendix'); }).length;  // appendix slides sit after the closing slide
   var $ = function (id) { return document.getElementById(id); };
   var counter = $('counter'), fill = $('progressFill'), dots = $('stepDots');
   var notesPanel = $('notesPanel'), npBody = $('npBody'), npTitle = $('npTitle'), npTime = $('npTime'), npStep = $('npStep');
@@ -121,8 +122,9 @@
 
   function renderChrome() {
     var m = model[current];
-    counter.textContent = pad(current + 1) + ' / ' + pad(total);
-    fill.style.width = ((current + (m.max ? step / (m.max + 1) : 0) + 1) / total * 100) + '%';
+    var appx = m.el.hasAttribute('data-appendix');
+    counter.textContent = appx ? 'เสริม A' + (current - mainCount + 1) : pad(current + 1) + ' / ' + pad(mainCount);
+    fill.style.width = (appx ? 100 : (current + (m.max ? step / (m.max + 1) : 0) + 1) / mainCount * 100) + '%';
     var html = '';
     for (var i = 0; i <= m.max && m.max > 0; i++) html += '<i' + (i <= step ? ' class="on"' : '') + '></i>';
     dots.innerHTML = html;
@@ -197,7 +199,7 @@
   /* ---------- Notes ---------- */
   function renderNotes() {
     var src = slides[current].querySelector('.notes');
-    npTitle.textContent = 'Speaker Notes — สไลด์ ' + (current + 1);
+    npTitle.textContent = 'Speaker Notes — ' + (current >= mainCount ? 'สไลด์เสริม A' + (current - mainCount + 1) : 'สไลด์ ' + (current + 1) + '/' + mainCount);
     npTime.textContent = slides[current].getAttribute('data-time') ? 'เวลา ' + slides[current].getAttribute('data-time') : '';
     npStep.textContent = model[current].max ? 'ขั้น ' + (step + 1) + '/' + (model[current].max + 1) : '';
     var html = src ? src.innerHTML : '<p>—</p>';
@@ -359,7 +361,8 @@
         if (!c) { stop(); cv = null; ctx = null; return; }
         if (c !== cv) { cv = c; ctx = c.getContext('2d'); level = 0; }
         var at = +slide.getAttribute('data-at') || 0;
-        goal = slide.classList.contains('s-hook') ? [0.25, 0.4, 0.9, 1][at] : [0.3, 0.75, 0.6, 0.6][at];
+        goal = (slide.classList.contains('s-hook') ? [0.25, 0.4, 0.9, 0.95, 1] : [0.3, 0.75, 0.6, 0.6])[at];
+        if (goal == null) goal = 0.6;
         if (reduceMotion) { level = goal; draw(0); return; }
         start();
       }

@@ -111,16 +111,19 @@ b { font-weight: 700; }
   transition: opacity 1s var(--ease), transform .9s var(--ease), filter 1s var(--ease); }
 .s-hook.active .hook-h1 { opacity: 1; filter: none; transition-delay: .7s, 0s, .7s; }
 .s-hook[data-at="1"] .hook-h1 { transform: translate3d(0,90px,0) scale(.92); }
-.s-hook[data-at="2"] .hook-h1, .s-hook[data-at="3"] .hook-h1 { transform: translate3d(0,-20px,0) scale(.72); }
+.s-hook:not([data-at="0"]):not([data-at="1"]) .hook-h1 { transform: translate3d(0,-20px,0) scale(.72); }
 .s-hook.active[data-at="0"] .hook-h1 { transform: translate3d(0,250px,0) scale(1.05); }
 .hook-h1.past { opacity: .45; }
 .hook-but { top: 470px; font: 700 96px/1.3 var(--display); color: var(--muted); }
 .s-hook[data-at="1"] .hook-but { transform: translate3d(0,40px,0); }
-.s-hook[data-at="2"] .hook-but, .s-hook[data-at="3"] .hook-but { transform: translate3d(0,-150px,0) scale(.5); }
+.s-hook:not([data-at="0"]):not([data-at="1"]) .hook-but { transform: translate3d(0,-150px,0) scale(.5); }
 .hook-but.past { opacity: .5; }
 .hook-h2 { top: 455px; font: 700 82px/1.4 var(--display); }
 .hook-h2 .neon { padding: 0 .15em; }
-.hook-end { top: 760px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.hook-end { top: 712px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.hook-ask { font: 600 38px/1.4 var(--display); padding: 14px 34px; border-radius: 999px; background: rgba(44,230,230,.08); border: 1px solid rgba(44,230,230,.4); }
+.hook-ask b { color: var(--cyan); }
+.hook-ask.past { opacity: .45; }
 .hook-sub { font-size: 34px; color: var(--muted); }
 .start-btn { display: inline-flex; align-items: center; gap: 16px; min-height: 96px; padding: 0 52px; border-radius: 999px;
   font: 600 34px var(--display); color: var(--white); background: rgba(44,230,230,.08); border: 1.5px solid rgba(44,230,230,.55);
@@ -128,7 +131,7 @@ b { font-weight: 700; }
 .start-btn .ic { width: 36px; height: 36px; }
 .start-btn:active { transform: scale(.97); }
 @media (hover:hover) { .start-btn:hover { background: rgba(44,230,230,.18); } }
-.hook-foot { position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; font: 600 22px var(--display); letter-spacing: .4em; color: rgba(156,174,200,.6); }
+.hook-foot { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font: 600 22px var(--display); letter-spacing: .4em; color: rgba(156,174,200,.6); }
 
 /* =========================================================
    2 · WHAT IS AI
@@ -558,3 +561,16 @@ kbd { display: inline-block; min-width: 26px; padding: 3px 7px; border-radius: 6
   .spark { display: none; }
   .ring { stroke-dashoffset: 0; }
 }
+
+/* ---------- v4: beginner edition ---------- */
+.tl.simple .era-pins b { font: 600 22px var(--display); color: var(--cyan); letter-spacing: .06em; margin-bottom: 6px; }
+.tl.simple .era-pins li { font-size: 30px; }
+.era-th i { font-style: normal; color: var(--muted); font-size: 22px; }
+.s-close .start-h { font: 700 34px var(--display); color: var(--cyan); margin-bottom: 18px; }
+.s-close .steps3 { flex-wrap: wrap; justify-content: center; }
+.s-close .steps3 span { font-size: 30px; }
+.s-close .close-line { max-width: 1500px; }
+[data-appendix] .eyebrow { color: var(--violet); }
+.tok-in { gap: 22px; }
+.donut-wrap { width: 420px; height: 420px; }
+.tok { gap: 60px; }
