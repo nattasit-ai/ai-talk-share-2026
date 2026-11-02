@@ -574,3 +574,6 @@ kbd { display: inline-block; min-width: 26px; padding: 3px 7px; border-radius: 6
 .tok-in { gap: 22px; }
 .donut-wrap { width: 420px; height: 420px; }
 .tok { gap: 60px; }
+
+/* slide 2: longer formal definition — keep 3 lines, tighter rhythm */
+.lead.lead-def { font-size: 34px; line-height: 1.55; max-width: 1640px; margin-bottom: 34px; }
